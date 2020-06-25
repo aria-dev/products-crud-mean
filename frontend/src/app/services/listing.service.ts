@@ -10,7 +10,7 @@ import { Product } from '../models/product';
 })
 export class ListingService {
 
-	private api = 'https://8080-c0e9f270-6cbc-432b-bf13-33cdbbe7f8ee.ws-us02.gitpod.io';
+  private api = 'https://8080-c0e9f270-6cbc-432b-bf13-33cdbbe7f8ee.ws-us02.gitpod.io';
   private  httpOptions = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json',
@@ -21,13 +21,23 @@ export class ListingService {
 
 	constructor(private http: HttpClient,) { }
 
-	 /** POST: add a new product to the server */
-  addProduct(product: Product): Observable<Product> {
-    return this.http.post<Product>(this.api + "/addProduct", product, this.httpOptions).pipe(
-      tap((newProduct: Product) => console.log(`added Product ${newProduct}`)),
-      catchError(this.handleError<Product>('addProduct'))
+	/** POST: add a new product to the server */
+    addProduct(product: Product): Observable<Product> {
+        return this.http.post<Product>(this.api + "/addProduct", product, this.httpOptions).pipe(
+        tap((newProduct: Product) => console.log(`added Product ${newProduct}`)),
+        catchError(this.handleError<Product>('addProduct'))
     );
+
   }
+
+   /** GET heroes from the server */
+    listProducts(): Observable<Product[]> {
+        return this.http.get<Product[]>(this.api + "/products")
+            .pipe(
+                tap(_ => console.log('fetched Products')),
+                catchError(this.handleError<Product[]>('products', []))
+            );
+    }
   
 
 	/**

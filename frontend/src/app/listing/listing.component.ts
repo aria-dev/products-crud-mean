@@ -1,23 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-export interface Product {
-    name: string;
-    category: string;
-    price: string;
-    size: string;
-    stock: number;
-    description: string;
-}
-
-const SAMPLE_DATA: Product[] = [
-  { name: "T-Shirt", category: "Apparel", price: "Rs. 650", size: "XL", stock: 23, description: "Mens' Apparel"},
-  { name: "T-Shirt", category: "Apparel", price: "Rs. 650", size: "XL", stock: 23, description: "Mens' Apparel"},
-  { name: "T-Shirt", category: "Apparel", price: "Rs. 650", size: "XL", stock: 23, description: "Mens' Apparel"},
-  { name: "T-Shirt", category: "Apparel", price: "Rs. 650", size: "XL", stock: 23, description: "Mens' Apparel"},
-  { name: "T-Shirt", category: "Apparel", price: "Rs. 650", size: "XL", stock: 23, description: "Mens' Apparel"},
-  { name: "T-Shirt", category: "Apparel", price: "Rs. 650", size: "XL", stock: 23, description: "Mens' Apparel"},
-  { name: "T-Shirt", category: "Apparel", price: "Rs. 650", size: "XL", stock: 23, description: "Mens' Apparel"},
-];
+import { Product } from '../models/product';
+import { ListingService } from '../services/listing.service';
 
 @Component({
   selector: 'app-listing',
@@ -26,12 +9,16 @@ const SAMPLE_DATA: Product[] = [
 })
 
 export class ListingComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'category', 'price', 'size', 'stock', 'description'];
-  dataSource = SAMPLE_DATA;
-  constructor() { }
+  displayedColumns: string[] = ['name', 'category', 'price', 'size', 'stock', 'description', 'action'];
+  productListing : Product[];
+
+  constructor(private listingService: ListingService ) { }
 
   ngOnInit(): void {
-
+      this.getProducts();
   }
 
+    getProducts(){
+        this.listingService.listProducts().subscribe((products) => this.productListing = products);
+    }
 }

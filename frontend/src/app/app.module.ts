@@ -17,6 +17,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { HttpClientModule } from '@angular/common/http';
+import { ViewListingComponent } from './view-listing/view-listing.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     NavigationComponent,
     ListingComponent,
-    AddListingComponent
+    AddListingComponent,
+    ViewListingComponent
   ],
   imports: [
     BrowserModule,

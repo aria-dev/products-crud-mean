@@ -15,12 +15,29 @@ app.use(bodyparser.urlencoded({extended: true}));
 app.use(cors());
 
 app.get("/products", (req, res) => {
-    res.send(JSON.stringify(productA));
+        productModel.Product.find(function(err, result){
+        if (err) { console.log(err); return; }
+        res.send(result);
+    });
 });
 
 app.post("/addProduct", bodyparser.json(), (req, res) => {
-    console.log(req.body);
-    res.send(req.body);
+
+    const product = new productModel.Product({
+        name: req.body.name,
+        category: req.body.category,
+        price: req.body.price,
+        size: req.body.size,
+        stock: req.body.stock,
+        description: req.body.description
+    });
+
+    product.save(function (err) {
+        if (err) { console.log(err); return; }
+        console.log(">>>product added successfully!");
+        res.send(JSON.stringify(product));
+    });
+
 });
 
 

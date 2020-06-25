@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Product } from '../models/product';
 import { ListingService } from '../services/listing.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-add-listing',
@@ -12,7 +13,11 @@ export class AddListingComponent implements OnInit {
 
   addListingForm;
 
-  constructor(private formBuilder: FormBuilder, private listingService : ListingService) { }
+  constructor(
+      private formBuilder: FormBuilder, 
+      private listingService : ListingService, 
+      private route: ActivatedRoute,
+      private router: Router) { }
 
   ngOnInit(): void {
 
@@ -41,6 +46,9 @@ export class AddListingComponent implements OnInit {
 
     this.listingService.addProduct(product).subscribe((res)=> {
       console.log("Posted to Server", res);
+        //Navigate to the product after added! 
+    //   this.router.navigate(['/home', { id: itemId }]);
+      this.router.navigate(['/home']);
     });
 
   }
