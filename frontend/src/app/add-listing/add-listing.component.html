@@ -1,0 +1,73 @@
+<mat-card class="page-card">
+
+    <h2 class="title-bar"> Create a new Product </h2>
+    
+    <div class="page-content">
+
+    <form class="form" [formGroup]="addListingForm" (ngSubmit)="onSubmit(addListingForm.value)">
+
+        <mat-grid-list cols="2" rowHeight="4:1">
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <mat-label>Product Name</mat-label>
+                    <input matInput formControlName="name"/>
+                </mat-form-field>
+            </mat-grid-tile>
+        
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <mat-label>Product Category</mat-label>
+                    <mat-select formControlName="category">
+                        <mat-option value="Clothing">Clothing</mat-option>
+                        <mat-option value="Aparrel">Aparrel</mat-option>
+                        <mat-option value="Shoes">Shoes</mat-option>
+                    </mat-select>
+                
+                </mat-form-field>
+                
+            </mat-grid-tile>
+              
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <mat-label>Product Price</mat-label>
+                    <input matInput formControlName="price"/>
+                </mat-form-field>
+            </mat-grid-tile>
+          
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <mat-label>Product Size</mat-label>
+                    <mat-select formControlName="size">
+                        <mat-option value="M">M</mat-option>
+                        <mat-option value="L">L</mat-option>
+                        <mat-option value="XL">XL</mat-option>
+                        <mat-option value="XXL">XXL</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+            
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <mat-label>Product Stock</mat-label>
+                    <input type="number" matInput formControlName="stock"/>
+                </mat-form-field>
+            </mat-grid-tile>
+            
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <mat-label>Product Description</mat-label>
+                    <textarea matInput formControlName="description"></textarea>
+                </mat-form-field>
+            </mat-grid-tile>
+           
+        </mat-grid-list>
+
+        <div class="button-bar">
+            <button mat-raised-button color="primary">Submit</button>
+        </div>
+    
+        </form>
+
+    </div>
+
+</mat-card>
